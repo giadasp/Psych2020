@@ -1,0 +1,17 @@
+group;var;value;min;max;weight
+1;"Content_Domain";"Biology";10;13;1
+1;"Content_Domain";"Chemistry";6;7;1
+1;"Content_Domain";"Earth_Science";7;9;1
+1;"Content_Domain";"Physics";6;7;1
+1;"Biology_Applying";1;2;;1
+1;"Biology_Knowing";1;2;;1
+1;"Biology_Reasoning";1;1;;1
+1;"Chemistry_Applying";1;2;;1
+1;"Chemistry_Knowing";1;2;;1
+1;"Chemistry_Reasoning";1;1;;1
+1;"Earth_Applying";1;2;;1
+1;"Earth_Knowing";1;2;;1
+1;"Earth_Reasoning";1;1;;1
+1;"Physics_Applying";1;2;;1
+1;"Physics_Knowing";1;2;;1
+1;"Physics_Reasoning";1;1;;1

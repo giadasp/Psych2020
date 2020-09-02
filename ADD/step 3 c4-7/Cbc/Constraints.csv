@@ -1,0 +1,5 @@
+group;var;value;min;max;weight
+1;"Content_Domain";"Biology";10;13;1
+1;"Content_Domain";"Chemistry";6;7;1
+1;"Content_Domain";"Earth_Science";7;9;1
+1;"Content_Domain";"Physics";6;7;1
