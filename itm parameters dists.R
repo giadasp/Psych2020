@@ -1,4 +1,4 @@
-setwd("C:\\Users\\Sassolino\\OneDrive - Alma Mater Studiorum Università di Bologna\\Giada-Mariagiulia-Stefania\\ARTICOLO special issue Psych\\code")
+setwd("")
 data <- read.table("item_bank_3PL_SCI.csv",sep = ";",header = TRUE)
 library(ggplot2)
 library(ggpubr)
