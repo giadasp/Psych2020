@@ -65,7 +65,7 @@ print_results(ATAmodel; group_by_fs = true, results_folder = "RESULTS")
 # To save the plots you need an implementation of TeX/LaTeX (such as MikTex) 
 # installed in your pc. 
 
-# ] add ATAPlot
+# ] add add https://github.com/giadasp/ATAPlot.jl
 using ATAPlot
 
 plot_results(ATAmodel; group_by_fs = true, results_folder = "RESULTS")
