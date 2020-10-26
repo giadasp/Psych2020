@@ -56,18 +56,16 @@ assemble!(ATAmodel;
 
 # All the settings and outputs from optimization are in ATAmodel object.
 # See the struct in ATA.jl to understand how to retrieve all the information.
-# A summary of the resulting tests is available in results_folder/Results.txt
 # If siman is chosen, the optimality and feasibility of the best neighbourhood
 # is reported in "RESULTS/ResultsATA.jl"
 
-# To print the plots you need an implementation of TeX/LaTeX (such as MikTex) 
-# installed in your pc. Otherwise set plots_out = false
-# ] add Plots
-using Plots
-# ] add PGFPlotsX
-using PGFPlotsX
+# A summary of the resulting tests is available in results_folder/Results.txt after running:
+print_results(ATAmodel; group_by_fs = true, results_folder = results_folder)
 
-print_results!(ATAmodel;
-group_by_fs=true,
-plots_out=false,
-results_folder="RESULTS")
+# To save the plots you need an implementation of TeX/LaTeX (such as MikTex) 
+# installed in your pc. 
+
+# ] add ATAPlot
+using ATAPlot
+
+plot_results(ATAmodel; group_by_fs = true, results_folder = results_folder)
