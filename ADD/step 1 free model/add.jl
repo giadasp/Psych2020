@@ -118,18 +118,19 @@ Assemble!(ATAmodel;
     optimizer_attributes=optimizer_attributes,
     optimizer_constructor=optimizer_constructor
     )
+
 # All the settings and outputs from optimization are in ATAmodel object.
 # See the struct in ATA.jl to understand how to retrieve all the information.
 # If siman is chosen, the optimality and feasibility of the best neighbourhood
 # is reported in "RESULTS/ResultsATA.jl"
 
-# A summary of the resulting tests is available in results_folder/Results.txt after running:
-print_results(ATAmodel; group_by_fs = true, results_folder = results_folder)
+# A summary of the resulting tests is available in RESULTS/Results.txt after running:
+print_results(ATAmodel; group_by_fs = true, results_folder = "RESULTS")
 
 # To save the plots you need an implementation of TeX/LaTeX (such as MikTex) 
 # installed in your pc. 
 
-# ] add ATAPlot
+# ] add https://github.com/giadasp/ATAPlot.jl
 using ATAPlot
 
-plot_results(ATAmodel; group_by_fs = true, results_folder = results_folder)
+plot_results(ATAmodel; group_by_fs = true, results_folder = "RESULTS")
