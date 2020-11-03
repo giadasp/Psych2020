@@ -14,19 +14,19 @@ ATAmodel = start_ATA()
 # Each of the following commands returns a string vector, the second element is a message describing the result.
 # 1. Add file with custom settings (Needed)
 load_settings!(ATAmodel; settings_file="settingsATA.jl", bank_file="estPoolwithSEs.csv", bank_delim=";")
-print_infos(ATAmodel)
+print_last_info(ATAmodel)
 
 # 2. Add friend set variables (Optional)
-@info add_friends!(ATAmodel)[2]
-print_infos(ATAmodel)
+add_friends!(ATAmodel)
+print_last_info(ATAmodel)
 
 # 3. Add enemy set variables (Optional)
 # add_enemies!(ATAmodel)
-# print_infos(ATAmodel)
+# print_last_info(ATAmodel)
 
 # 4. Add categorical constraints (Optional)
 add_constraints!(ATAmodel; constraints_file="Constraints.csv", constraints_delim=";")
-print_infos(ATAmodel)
+print_last_info(ATAmodel)
 
 # 5. Add overlap maxima (Optional)
 # add_overlap!(ATAmodel; overlap_file="Overlap Matrix.csv", overlap_delim=";")
@@ -34,15 +34,15 @@ print_infos(ATAmodel)
 
 # 6. Add expected score constraints (Optional)
 # add_exp_score!(ATAmodel)
-# print_infos(ATAmodel)
+# print_last_info(ATAmodel)
 
 # 7. Add overlap maxima (Optional, Needed if add_friends!(model) hase been run)
 group_by_friends!(ATAmodel)
-print_infos(ATAmodel)
+print_last_info(ATAmodel)
 
 # 8. Add objective function (Optional)
 add_obj_fun!(ATAmodel)
-print_infos(ATAmodel)
+print_last_info(ATAmodel)
 
 # Assembly settings
 

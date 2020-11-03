@@ -13,29 +13,36 @@ ATAmodel = start_ATA()
 
 # Each of the following commands returns a string vector, the second element is a message describing the result.
 # 1. Add file with custom settings (Needed)
-@info load_settings!(ATAmodel; settings_file="settingsATA.jl", bank_file="estPoolwithSEs.csv", bank_delim=";")[2]
+load_settings!(ATAmodel; settings_file="settingsATA.jl", bank_file="estPoolwithSEs.csv", bank_delim=";")
+print_last_info(ATAmodel)
 
 # 2. Add friend set variables (Optional)
-@info add_friends!(ATAmodel)[2]
+add_friends!(ATAmodel)
+print_last_info(ATAmodel)
 
 # 3. Add enemy set variables (Optional)
-# @info add_enemies!(ATAmodel)[2]
+# add_enemies!(ATAmodel)
+# print_last_info(ATAmodel)
 
 # 4. Add categorical constraints (Optional)
-@info add_constraints!(ATAmodel; constraints_file="Constraints.csv", constraints_delim=";")[2]
+add_constraints!(ATAmodel; constraints_file="Constraints.csv", constraints_delim=";")
+print_last_info(ATAmodel)
 
-ATAmodel.IU.max[ATAmodel.settings.bank.DOMAIN .== "Relazioni e funzioni"] .= 4
 # 5. Add overlap maxima (Optional)
-# @info add_overlap!(ATAmodel; overlap_file="Overlap Matrix.csv", overlap_delim=";")[2]
+# add_overlap!(ATAmodel; overlap_file="Overlap Matrix.csv", overlap_delim=";")
+# ATAmodel.output.infos[end]
 
 # 6. Add expected score constraints (Optional)
-# @info add_exp_score!(ATAmodel)[2]
+# add_exp_score!(ATAmodel)
+# print_last_info(ATAmodel)
 
 # 7. Add overlap maxima (Optional, Needed if add_friends!(model) hase been run)
-@info group_by_friends!(ATAmodel)[2]
+group_by_friends!(ATAmodel)
+print_last_info(ATAmodel)
 
 # 8. Add objective function (Optional)
-@info add_obj_fun!(ATAmodel)[2] 
+add_obj_fun!(ATAmodel)
+print_last_info(ATAmodel)
 
 # Assembly settings
 
@@ -54,11 +61,15 @@ assemble!(ATAmodel;
     optimizer_attributes=optimizer_attributes,
     optimizer_constructor=optimizer_constructor
     )
+print_last_info(ATAmodel)
 
 # All the settings and outputs from optimization are in ATAmodel object.
 # See the struct in ATA.jl to understand how to retrieve all the information.
 # If siman is chosen, the optimality and feasibility of the best neighbourhood
 # is reported in "RESULTS/ResultsATA.jl"
 
+using ATAPlot
 # A summary of the resulting tests is available in RESULTS/Results.txt after running:
 print_results(ATAmodel; group_by_fs = true, results_folder = "RESULTS")
+
+plot_results(ATAmodel, group_by_fs=true)
