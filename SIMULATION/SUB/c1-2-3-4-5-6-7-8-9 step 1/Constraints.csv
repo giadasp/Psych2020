@@ -1,0 +1,11 @@
+group;var;value;min;max;weight
+1;"Domain";"Space and Figures";10;13;1
+1;"Domain";"Numbers";6;7;1
+1;"Domain";"Data and Forecasting";7;9;1
+1;"Domain";"Relations and Functions";6;7;1
+1;"Dimension";"Arguing";10;13;1
+1;"Dimension";"Problem Solving";6;7;1
+1;"Dimension";"Knowing";7;9;1
+1;"Answer_type";"Multiple-Choie";30;;1
+1;"Answer_type";"Open-Ended";4;6;1
+1;"Answer_type";"Matching";10;;1
