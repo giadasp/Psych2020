@@ -1,0 +1,121 @@
+T=20
+I=300
+IRT model = 2PL, 
+a ~ Normal(1.1, 0.2) truncated in [0, +Inf]
+b ~ Normal(-0.6, 1.0)
+
+Item parameter distributions derived from the calibration of 39 items from the INVALSI 2017/2018 administration
+ of the mathematics test to fifth-grade pupils.
+
+Content distributions:
+
+    Domain:(from INVALSI)
+    Space and Figures          0.28
+    Numbers                    0.28
+    Data and Forecasting       0.28
+    Relations and Functions    0.16 (less than the other domains!)
+
+    Dimension:(from INVALSI)
+    Knowing                    0.66
+    Problem Solving            0.22
+    Arguing                    0.12
+
+    Answer_type:
+    Multiple-Choice            0.72
+    Matching                   0.17
+    Open-Ended                 0.11
+
+11 Units of 2 or 3 items each.
+
+Constraints:
+    1; T=20
+    2; n_t = [38, 40]
+    3; High, item use max = 3.0
+    4; High, "Domain";"Space and Figures" [9;10] , backup: max item use for items in relations and functions=4.0
+    5; High, "Domain";"Numbers" [9;10] , backup: max item use for items in relations and functions=4.0
+    6; High, "Domain";"Relations and Functions" [9;10] , backup: max item use for items in relations and functions=4.0
+    7; High, "Domain";"Data and Forecasting" [9;10] , backup: max item use for items in relations and functions=4.0
+    8; Medium, "Answer_type";"Multiple-Choice" [27;] , backup: increase maximum item use of items with matching asnwer type
+    9; Medium, "Answer_type";"Matching"; [8;],  backup: increase maximum item use of items with matching answer type
+    10; Medium, "Answer_type";"Open-Ended"; [4;6],  backup: increase maximum item use of items with matching answer type
+    11; Low, "Dimension";"Knowing" [23;26] , no backup, full relaxation
+    12; Low, "Dimension";"Problem Solving" [9;11],  no backup, full relaxation
+    13; Low, "Dimension";"Arguing" [5;8],  no backup, full relaxation
+
+
+Objective:
+    MINIMAX, at points [-1.0, -0.5, 0.0] set targets at [10.0, 12.0, 10.0]
+    Minimize distance between the TIF and the targets.
+    Sembra che gli item siano adatti a misurare studenti con abilità intorno a -0.5. 
+    Quindi si sceglie -0.5 come valore dell'abilità con target più alto.
+
+
+ADD: 
+    step 1: 1-2-3 OK (500 seconds)
+    step 2: 1-2-3-4 OK (500 seconds)
+    step 3: 1-2-3-4-5 OK (500 seconds)
+    step 4: 1-2-3-4-5-6 OK (500 seconds)
+    step 5: 1-2-3-4-5-6-7 INFEASIBLE (~10 seconds)
+    Analyze solution of step 4. More than 10 items in Data and Forecasting in almost all the tests.
+    There are few items in Relations and Functions in the item bank.
+    Set as backup: items in Relations and Functions may be used in at maximum 4 tests.
+
+    step 6: 1-2-3-4-5-6-7(backup) OK (500 seconds)
+    step 7: 1-2-3-4-5-6-7(backup)-8 OK (500 seconds)
+    step 8: 1-2-3-4-5-6-7(backup)-8-9 INFEASIBLE! (~10 seconds)
+    Analyze solution of step 7. Not enough items in Matching.
+    There are few items in Matching in the item bank.
+    Set as backup: items with Matching answer type may be used in at maximum 4 tests.
+
+    step 9: 1-2-3-4-5-6-7(backup)-8-9(backup) OK (500 seconds)
+    step 10: 1-2-3-4-5-6-7(backup)-8-9(backup)-10 OK (500 seconds)
+    step 11: 1-2-3-4-5-6-7(backup)-8-9(backup)-10-11 OK (500 seconds)
+    step 12: 1-2-3-4-5-6-7(backup)-8-9(backup)-10-11-12 OK (500 seconds)
+    step 13: 1-2-3-4-5-6-7(backup)-8-9(backup)-10-11-12-13 OK (500 seconds)
+
+    The solution obtained with the ADD strategy satisfies all the constraints.
+    For constraints 5,6,7,8,9,10 the backup alternatives have been applied.
+    Total steps: 13 (specification of 13 models)
+    Total time: ~5520 seconds
+    TIFs at targets: [10.261-10.789], [11.195-11.456], [10.414-10.838]
+
+
+SUB: 
+    step 1: 1-2-3-4-5-6-7-8-9-10-11-12-13 INFEASIBLE! (~10 seconds)
+    step 2: 1-2-3-4-5-6-7-8-9-10-11-12 INFEASIBLE! (~10 seconds)
+    step 3: 1-2-3-4-5-6-7-8-9-10-11 INFEASIBLE! (~10 seconds)
+    step 4: 1-2-3-4-5-6-7-8-9-10 INFEASIBLE! (~10 seconds)
+    We don't have a feasible model to analyze, we look at the structure of the item bank. 
+    There is a lack of matching items.
+    Set as backup: items with Matching answer type may be used in at maximum 4 tests.
+
+    step 5: 1-2-3-4-5-6-7-8-9-10(backup) INFEASIBLE! (~10 seconds)
+
+    step 6: 1-2-3-4-5-6-7-8-9 INFEASIBLE! (~10 seconds)
+    Set as backup: items with Matching answer type may be used in at maximum 4 tests.
+
+    step 7: 1-2-3-4-5-6-7-8-9(backup) INFEASIBLE! (~10 seconds)
+    step 8: 1-2-3-4-5-6-7-8 INFEASIBLE! (~10 seconds)
+    Set as backup: items with Matching answer type may be used in at maximum 4 tests.
+
+    step 9: 1-2-3-4-5-6-7-8(backup) INFEASIBLE! (~10 seconds)
+    step 10: 1-2-3-4-5-6-7 INFEASIBLE! (~10 seconds)
+    We don't have a feasible model to analyze, we look at the structure of the item bank.
+    There is a lack of matching items.
+    Set as backup: items with Matching answer type may be used in at maximum 4 tests.
+
+    step 11: 1-2-3-4-5-6-7(backup) OK! (500 seconds)
+
+    The SUB strategy would stop here, the solution obtained in step 11 satisfies only the first 7 constraints.
+    Constraints 5,6,7 are valuated in their backup alternatives.
+    Total time: 600 seconds
+    TIFs at targets: [10.389-10.765], [11.233-11.394], [10.578-10.760]
+
+HYBRID:
+    The hybrid stretegy could start after step 12 of the SUB strategy.
+    It would apply steps 7-13 of the ADD strategy.
+    The hybrid strategy would add other 6 steps of 500 seconds each (steps 7, 9-13 of ADD strategy)
+    and 10 seconds infeasible step (step 8 of ADD strategy).
+    Same solution as ADD but in less time. It requires the specification of 18 models (1 per step).
+    Total time: 600 + 3010 = 3610 seconds,
+    Total Steps: 18 steps. 

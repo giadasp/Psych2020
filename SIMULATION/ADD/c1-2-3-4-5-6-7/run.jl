@@ -53,6 +53,7 @@ solver = "jumpATA"
 # Select the solver, Cbc as open-source is a good option.
 optimizer_constructor = "Cbc"
 # #Optimizer attributes
+
 optimizer_attributes = [("seconds", 500), ("logLevel", 1)]
 
 # 9. assemble

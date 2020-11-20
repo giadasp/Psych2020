@@ -1,11 +1,16 @@
 using Distributions
-I = 350
-a = rand(LogNormal(0, 0.25), I)
-b = rand(Normal(0,1), I)
-c = rand(LogitNormal(-2.5,1.0), I)
+using StatsBase
+using DataFrames
+using CSV
+I = 300
 sim_pool = DataFrame(ID = collect(1:I))
-sim_pool=DataFrame(a=a, b=b, c=c)
-Domain= sample(["Space and Figures", "Data and Forecasting", "Relations and Functions", "Numbers"], ProbabilityWeights([0.28,0.28,0.28,1.0-(0.28*3)]), I)
+a = rand(TruncatedNormal(1.10, 0.2, 0, Inf),I)
+sim_pool.a = a
+
+b = rand(Normal(-0.60,1), I)
+sim_pool.b = b
+
+Domain= sample(["Space and Figures", "Data and Forecasting", "Numbers", "Relations and Functions"], ProbabilityWeights([0.28, 0.28, 0.26, 0.18]), I)
 Dimension = sample(["Arguing", "Problem Solving", "Knowing"], ProbabilityWeights([0.10,0.31,1.0-sum([0.10,0.31])]), I)
 Unit = fill("", I)
 Unit[sample(1:I, 3)] .= "U1"
@@ -25,4 +30,4 @@ sim_pool.Domain = Domain
 sim_pool.Dimension = Dimension
 sim_pool.Unit = Unit
 sim_pool.Answer_type = Answer_type
-CSV.write("SIMULATION/sim_pool.csv", sim_pool)
+CSV.write("sim_pool.csv", sim_pool)

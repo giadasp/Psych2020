@@ -3,7 +3,7 @@
 using ATA
 # ] add JuMP@0.21.3
 using JuMP
-# ] add Cbc
+# ] add Cbccd
 using Cbc
 
 # Each of the following commands returns a string vector, the second element is a message describing the result.
@@ -13,7 +13,7 @@ ATAmodel = start_ATA()
 
 # Each of the following commands returns a string vector, the second element is a message describing the result.
 # 1. Add file with custom settings (Needed)
-load_settings!(ATAmodel; settings_file="settingsATA.jl", bank_file="estPoolwithSEs.csv", bank_delim=";")
+load_settings!(ATAmodel; settings_file="settingsATA.jl", bank_file="../../sim_pool_fixed.csv", bank_delim=",")
 print_last_info(ATAmodel)
 
 # 2. Add friend set variables (Optional)
@@ -27,7 +27,7 @@ print_last_info(ATAmodel)
 # 4. Add categorical constraints (Optional)
 add_constraints!(ATAmodel; constraints_file="Constraints.csv", constraints_delim=";")
 print_last_info(ATAmodel)
-ATAmodel.settings.IU.max[ATAmodel.settings.bank.DOMAIN .== "Relazioni e funzioni"] .= 4
+ATAmodel.settings.IU.max[ATAmodel.settings.bank.Domain .== "Relations and Functions"] .= 4
 
 # 5. Add overlap maxima (Optional)
 # add_overlap!(ATAmodel; overlap_file="Overlap Matrix.csv", overlap_delim=";")
@@ -54,6 +54,7 @@ solver = "jumpATA"
 # Select the solver, Cbc as open-source is a good option.
 optimizer_constructor = "Cbc"
 # #Optimizer attributes
+
 optimizer_attributes = [("seconds", 500), ("logLevel", 1)]
 
 # 9. assemble
